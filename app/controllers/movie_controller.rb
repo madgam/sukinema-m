@@ -178,9 +178,6 @@ class MovieController < ApplicationController
     end
       
     result = result['results'][0]
-
-    result = nil
-
     if result != nil && result.length != 0 then
       
       drop_path = result["backdrop_path"]

@@ -64,7 +64,3 @@ if Rails.env.development?
     cert: cert_file.to_path
   }
 end
-
-# cert = "./example.com.pem"
-# key = "./example.com-key.pem"
-# ssl_bind "0.0.0.0", 9292, cert: cert, key: key
