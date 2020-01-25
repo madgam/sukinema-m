@@ -179,7 +179,9 @@ class MovieController < ApplicationController
       
     result = result['results'][0]
 
-    if result.length != 0 then
+    result = nil
+
+    if result != nil && result.length != 0 then
       
       drop_path = result["backdrop_path"]
       p_path = result["poster_path"]
