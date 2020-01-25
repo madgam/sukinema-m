@@ -33,7 +33,7 @@ class MovieController < ApplicationController
 
     while true do
       
-      if index > 5 then
+      if index > 100 then
         break
       end
       url = "https://eigakan.org/theaters/pref/13/#{today}/#{page}"
@@ -59,7 +59,7 @@ class MovieController < ApplicationController
       # 作品名を取得
       node.css(".theaterlist01").children.each{ |mv|
 
-        if index > 5 then
+        if index > 100 then
           break
         end
 
