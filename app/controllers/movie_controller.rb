@@ -188,7 +188,7 @@ class MovieController < ApplicationController
       end
       
       review = result["vote_average"]
-      review = (review / 2).round(1)
+      review = review / 2
       release_date = result["release_date"]
       
       if p_path.blank? then
@@ -200,7 +200,7 @@ class MovieController < ApplicationController
     end
 
     # レビュー
-    @movie_model.review = review
+    @movie_model.review = review.to_f.round(1)
     # 公開日
     @movie_model.release_date = release_date.gsub("-",".")
   end
