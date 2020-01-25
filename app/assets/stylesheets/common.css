@@ -1,0 +1,476 @@
+html {
+	font-size: 62.5%;/* 10px*/
+}
+
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 7px;
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(0,0,0,.5);
+    box-shadow: 0 0 1px rgba(255,255,255,.5);
+}
+
+a:link, a:visited, a:hover {
+	text-decoration: none;
+	color: #555555;
+}
+
+
+.strong {
+	font-weight: bold;
+}
+
+/* ここまで共通　*/
+
+body {
+	text-align: center;
+	color: #555555;
+	font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", YuGothic, "ヒラギノ角ゴ ProN W3", Hiragino Kaku Gothic ProN, Arial, "メイリオ", Meiryo, sans-serif;
+    line-height: 2;
+	font-size: 1.6rem;
+	letter-spacing: 0.03em;
+}
+
+#loader {
+	display: none;
+	background: linear-gradient(#FF4562, #FF4562);
+	opacity: 1;
+    position: fixed;
+    z-index: 100000;
+    width: 100%;
+    height: 100%;
+    top: 0;
+	left: 0;
+}
+
+.title {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+}
+
+#loader img {
+	margin: 0 auto;
+}
+
+header {
+	margin-top: 28px;
+}
+
+h1 img {
+	width: calc(142/375*100%);
+	display: block;
+	margin: 0 auto;
+}
+
+nav {
+	border-bottom: 1px solid #ddd;
+	margin-bottom: 20px;
+}
+
+.nav_inner {
+	display: block;
+	margin: 20px calc(20/375*100%) 0;
+}
+
+.sort_nav {
+	display: flex;
+	line-height: 1;
+}
+
+.sort_nav li {
+  display: block;
+  width: 33.3%;
+  padding: 8px 0px;
+  position: relative;
+}
+
+.sort_nav li::before,
+.sort_nav li::after {
+	width: 33.3%;
+	content: "";
+	border-bottom: 2px solid #FF4945;
+	bottom: 0;
+	display: block;
+	position: absolute;
+	transition: all .3s ease;
+	-webkit-transition: all .3s ease;
+	width: 0;
+}
+.sort_nav li::before {
+  left: 50%;
+}
+.sort_nav li::after {
+  right: 50%;
+}
+.sort_nav li:hover::before,
+.sort_nav li:hover::after {
+  width: 50%;
+}
+
+.off {
+	border-bottom: none !important;
+}
+
+.off a {
+	color: #bbbbbb !important;
+}
+
+main {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	margin: 0 calc(20/375*100%) 30px;
+}
+
+.card {
+	border-radius: 10px;
+	box-shadow: 0 0 8px rgba(0,0,0,0.3);
+	position: relative;
+	margin-bottom: 20px;
+}
+
+.link {
+	display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1
+}
+
+.image_content {
+	position: relative;
+	
+}
+
+.image_content img {
+	border-radius: 10px 10px 0 0;
+	display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+.place {
+	position: absolute;
+	bottom: calc(14/375*100%);
+	left: calc(14/375*100%);
+	color: #fff;
+	font-size: 1rem;
+	z-index: 100;
+	padding-left:10px;
+}
+
+.place::before {
+	content: '\f3c5';
+	position: absolute;
+	display: block;
+	top: 0;
+	left: 0;
+	font-family: "Font Awesome 5 Free";
+	font-weight: 900;
+}
+.rating {
+	position: absolute;
+	bottom: calc(14/375*100%);
+	right: calc(14/375*100%);
+	color: #fff;
+	font-size: 1rem;
+	display: flex;
+	z-index: 100;
+}
+
+.rating_num {
+	padding-right: 4px;
+}
+
+.rating_star {
+	font-family: "Font Awesome 5 Free";
+	font-weight: 900;
+	position: relative;
+}
+
+.rating_star::before {
+	color: #aaa;
+    content: '\f005 \f005 \f005 \f005 \f005';
+    display: block;
+}
+
+.rating_star::after {
+	color: #fff;
+	position: absolute;
+	display: block;
+	top: 0;
+	left: 0;
+}
+
+/* レーティング */
+
+.rating_00 .rating_star::after  {
+    content: "\00a0 \00a0 \00a0 \00a0 \00a0";
+}
+
+.rating_05 .rating_star::after  {
+    content: '\00a0 \00a0 \00a0 \00a0';
+}
+
+.rating_10 .rating_star::after  {
+    content: "\00a0 \00a0 \00a0 \00a0";
+}
+
+.rating_15 .rating_star::after  {
+    content: '\00a0 \00a0 \00a0';
+}
+
+.rating_20 .rating_star::after  {
+    content: "\00a0 \00a0 \00a0";
+}
+
+.rating_25 .rating_star::after  {
+    content: "\00a0 \00a0";
+}
+
+.rating_30 .rating_star::after  {
+    content: "\00a0 \00a0";
+}
+
+.rating_35 .rating_star::after  {
+    content: "\00a0";
+}
+
+.rating_40 .rating_star::after  {
+    content: "\00a0";
+}
+
+.rating_45 .rating_star::after  {
+    content: "";
+}
+
+.rating_50 .rating_star::after  {
+    content: "";
+}
+
+.img_box {
+	position: relative;
+}
+
+.img_box::before {
+	content: '';
+	display: block;
+	background: linear-gradient(to bottom, rgba(255,255,255,0), #000 90%);
+	position: absolute;
+	background: url(gra.png) repeat-x 0 0;
+	position:absolute;
+	width: 100%;
+	height: 90%;
+	left: 0;
+	bottom: 0;	
+}
+
+.content {
+	background-color: #fff;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: calc(20/375*100%);
+	border-radius: 0 0 10px 10px;
+}
+
+.left_text {
+	width: 25%;
+	font-size: 1.2rem;
+	line-height: 1.2;
+}
+
+.time {
+	font-size: 1.6rem;
+}
+
+.right_text {
+	width: 70%;
+    text-align: left;
+    font-size: 1.4rem;
+    line-height: 1.5;
+}
+
+/*  ここからモーダル  */
+
+.modal {
+	display: none;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100000;
+}
+
+.modal_inner {
+	display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.modal_bg {
+	background: rgba(0,0,0,0.8);
+    height: 100vh;
+    position: absolute;
+    width: 100%;
+}
+
+.modal_cont {
+	background-color: #fff;
+    margin: auto calc(20/375*100%);
+    z-index: 100001;
+    border-radius: 10px;
+    padding: calc(20/375*100%);
+}
+
+.mo_upper {
+	display: flex;
+    justify-content: space-between;
+    text-align: left;
+}
+
+.mo_img {
+	width: 60%;
+	margin-right: 4%;
+}
+
+.mo_img img {
+	width: 100%;
+}
+
+.mo_ttl {
+	margin-bottom: 10px;
+}
+
+.mo_ttl h2 {
+	font-size: 1.8rem;
+	line-height: 1.5;
+	margin-bottom: 14px;
+}
+
+.mo_date, .mo_place {
+	font-size: 1.4rem;
+	line-height: 1.4;
+	position:relative;
+	padding-left: 18px;
+	color: #555;
+}
+
+.mo_date {
+	margin-bottom: 14px;
+	
+}
+
+.mo_date::before {
+	content: '\f272';
+	position: absolute;
+	display: block;
+	top: 0;
+	left: 0;
+	font-family: "Font Awesome 5 Free";
+	font-weight: 900;
+}
+
+.mo_place::before {
+	content: '\f3c5';
+	position: absolute;
+	display: block;
+	top: 0;
+	left: 0;
+	font-family: "Font Awesome 5 Free";
+	font-weight: 900;
+}
+
+.mo_txt {
+	text-align: left;
+	margin-bottom: 20px;
+	line-height: 1.3;
+	height: 160px;
+	overflow: scroll;
+	padding-right: 10px;
+}
+
+.button_area {
+	
+}
+.button_area a {
+	display: block;
+	width: 100%;
+	border: 1px solid #ccc;
+	border-radius: 10px;
+	padding: 20px;
+}
+
+
+footer {
+	color: #ccc;
+	height: 40px;
+}
+
+
+@media screen and (min-width:560px){
+	/* タブレット */
+	nav {
+		margin: calc(16/375*100%) 0;
+	}
+
+	.card {
+		width: calc(96% / 2); /* 100%幅を2で割るという指定 */
+	}
+}
+
+
+@media screen and (min-width:960px){
+	/* PC */
+	body {
+		font-size:1.6rem;/* 16px*/
+	}
+	
+	h1 img {
+		width: 200px;
+	}
+
+	nav {
+		margin: calc(10/375*100%) 0;
+	}
+
+	main {
+		max-width: 1100px;
+		width: 100%;
+		margin: 0 auto 30px;
+	}
+	/* 最後の行が3列より少ない場合左寄せにレイアウトさせる */
+    main::after {
+        content: "";
+        display: block;
+        width: calc(96% / 3);
+    }
+	.card {
+		width: calc(96% / 3); /* 100%幅を3で割るという指定 */
+		margin: 0px 0px 30px;
+	}
+	.modal_cont {
+    	width: 500px;
+		padding: 30px;
+	}
+	.mo_img {
+		width: 30%;
+	}
+
+
+}
+
+.none {
+	display: none;
+}
+
+.sort_link {
+	cursor: pointer;
+}

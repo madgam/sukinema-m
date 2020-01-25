@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
+<meta charset="utf-8">
+<title>スキマ時間で映画を観よう || スキネマ</title>
+<%= stylesheet_link_tag "reset", :media => "all" %>
+<%= stylesheet_link_tag "common", :media => "all" %>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=<%= @google_api_key %>&callback=initMap" type="text/javascript"></script>
+</head>
+<body onload="init()">
+	<div id="loader">
+		<p class="title"><%= image_tag 'ttl.svg' %></p>	
+	</div>
+
+<header>
+    <h1>
+    	<a href="/">
+			<%= image_tag 'logo.svg' %>
+    	</a>
+    </h1>
+</header>
+<nav>
+	<div class="nav_inner">
+  		<ul class="sort_nav">
+    		<li id="sort_1" class="sort_link">上映時間順</li>
+    		<li id="sort_2" class="off sort_link">距離順</li>
+    		<li id="sort_3" class="off sort_link">人気順</li>
+  		</ul>
+	</div>
+</nav>
+<main id="list"></main>
+<div id="data" class="none" data-list-id="<%= @movieList.to_json %>"></div>
+
+<!-- ここからモーダル -->
+<div class="modal js-modal">
+	<div class="modal_inner">
+	<div class="modal_bg js-modal-close"></div>
+		<div class="modal_cont">
+			<div class="mo_upper">
+				<p class="mo_img"><img></p>
+				<div class="mo_ttl">
+					<h2 class="strong mo_title"></h2>
+					<p class="mo_date"></p>
+					<a href="#" class="mo_place" target="_blank"></a>
+					<p class="mo_time"></p>
+				</div>
+			</div>
+			<div class="mo_txt"></div>
+			<div class="button_area strong"><a href="#" id="mo_link" target="_blank">映画館公式サイトへ</a></div>
+		</div>
+	</div>
+</div>
+<footer>
+	©2020 sukinema
+</footer>
+<script></script>
+</body>
+</html>
