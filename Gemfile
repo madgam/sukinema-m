@@ -60,6 +60,8 @@ gem 'gmaps4rails'
 gem "geocoder"
 gem 'dotenv-rails'
 gem 'delayed_job_active_record'
+gem 'resque'
 gem 'sidekiq'
 gem 'whenever', require: false
 gem 'open_uri_redirections'
+gem 'redis-rails'

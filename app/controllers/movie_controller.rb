@@ -17,7 +17,6 @@ class MovieController < ApplicationController
   end
 
   def get_movie 
-
     @user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.81 Safari/537.36"
     today = Time.now.strftime("%Y%m%d")
 
@@ -33,7 +32,7 @@ class MovieController < ApplicationController
 
     while true do
       
-      if index > 100 then
+      if index > 5 then
         break
       end
       url = "https://eigakan.org/theaters/pref/13/#{today}/#{page}"
@@ -59,7 +58,7 @@ class MovieController < ApplicationController
       # 作品名を取得
       node.css(".theaterlist01").children.each{ |mv|
 
-        if index > 100 then
+        if index > 5 then
           break
         end
 
@@ -91,7 +90,6 @@ class MovieController < ApplicationController
           # DB登録用のモデルオブジェクトを初期化
           @movie_model = Movie.new()
 
-          hash = {}
           if elm.include?(":") then
             edit_str = elm.split("～終")[0]
             if edit_str.include?(mv.css("a").inner_text) then
@@ -120,12 +118,12 @@ class MovieController < ApplicationController
             description = childnode.css(".j2").inner_text.split("にて公開")[1].split("\n")[0]
             
             edit_title = mv.css("a").inner_text.gsub("(","（").gsub(")","）")
-            r_edit_title = edit_title
+            @title_nm = edit_title
             title_option = ""
             if edit_title.include?("字幕") || edit_title.include?("吹替") then
               title_ary = edit_title.split("（")
               title_option = "（" + title_ary[title_ary.length - 1]
-              r_edit_title = edit_title.gsub(title_option, "")
+              @title_nm = edit_title.gsub(title_option, "")
             end
             theater_block = mv.parent.css(".thater_check02")
             # 映画館を取得
@@ -136,7 +134,7 @@ class MovieController < ApplicationController
             link = theater_block.css("a")[0][:href]
 
             @movie_model.index = index
-            @movie_model.title = r_edit_title + title_option
+            @movie_model.title = @title_nm + title_option
             @movie_model.time = edit_str_strip[0].gsub(/[[:space:]]/, '')
             @movie_model.all_time = all_time
             @movie_model.theater = theater
@@ -144,7 +142,7 @@ class MovieController < ApplicationController
             @movie_model.longitude = lat_long["longitude"]
             @movie_model.link = link
             @movie_model.description = description
-            get_movie_data(r_edit_title)
+            get_movie_data
           end
 
           begin
@@ -159,9 +157,8 @@ class MovieController < ApplicationController
     end
   end
 
-  def get_movie_data(title_nm)
+  def get_movie_data
 
-    api_key = ENV["TMDB_API_KEY"]
     access_token = ENV["TMDB_ACCESS_TOKEN"]
     
     search_url = ""
@@ -169,16 +166,19 @@ class MovieController < ApplicationController
     p_path = ""
     review = 0.0
     release_date = ""
-    search_uri = "https://api.themoviedb.org/3/search/movie/#{search_id}?api_key=#{api_key}&language=ja-JP&query=#{title_nm}&page=1&include_adult=false"
+    search_uri = MovieHelper.get_search_movie_uri(@title_nm)
 
     search_charset = nil
-    result = open(URI.encode(search_uri), :allow_redirections => :all, "User-Agent" => @user_agent) do |f|
+    json = open(search_uri, :allow_redirections => :all, "User-Agent" => @user_agent) do |f|
       search_charset = f.charset
       JSON.parse(f.read)
     end
+
+    search_result = json['results']
       
-    result = result['results'][0]
-    if result != nil && result.length != 0 then
+    if search_result != nil && search_result.length != 0 then
+      search_result = search_result.sort_by { |hash| -(hash['release_date'].to_i) }
+      result = search_result[0]
       
       drop_path = result["backdrop_path"]
       p_path = result["poster_path"]

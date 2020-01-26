@@ -8,7 +8,21 @@ class ShowController < ApplicationController
 
     def convert_movie_data
         movie_array = []
-        Movie.find_each { |movie|
+        movie_result =  Movie.select(
+                        :index,
+                        :title,
+                        :time,
+                        :all_time,
+                        :theater,
+                        :latitude,
+                        :longitude,
+                        :link,
+                        :description,
+                        :poster_id,
+                        :drop_path,
+                        :review,
+                        :release_date).distinct
+        movie_result.each { |movie|
             movie_hash = {}
             time = get_time_diff(movie.time)
             # 2時間以内の映画のみ表示
