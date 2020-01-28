@@ -13,11 +13,19 @@ function _modal_init()
         var id = $(this).attr('id');
         _return_dertail_disp(id);
         $('.js-modal').fadeIn();
-        return false;
+        //スクロール禁止
+        $('body').css('overflow', 'hidden');
     });
     $('.js-modal-close').on('click', function ()
     {
         $('.js-modal').fadeOut();
+        //スクロール復帰
+        $('body').css('overflow', 'auto');
         return false;
     });
+}
+
+function handleTouchMove(event)
+{
+    event.preventDefault();
 }
