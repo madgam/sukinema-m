@@ -15,6 +15,7 @@ function _modal_init()
         $('.js-modal').fadeIn();
         //スクロール禁止
         $('body').css('overflow', 'hidden');
+        return false;
     });
     $('.js-modal-close').on('click', function ()
     {
