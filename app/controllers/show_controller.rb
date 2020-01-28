@@ -3,7 +3,7 @@ class ShowController < ApplicationController
     def index
         @google_api_key = ENV["GOOGLE_API_KEY"]
         # 映画リストを取得
-        @movieList = convert_movie_data
+        @movie_list = convert_movie_data
     end
 
     def convert_movie_data

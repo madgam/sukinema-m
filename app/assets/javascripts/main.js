@@ -116,6 +116,9 @@ function _return_dertail_disp(id)
 			if (!release_date)
 			{
 				release_date = '-';
+			} else
+			{
+				release_date += '公開'
 			}
 			$('.mo_date').html(release_date);
 			$('.mo_place').html(theater);
@@ -145,7 +148,7 @@ function _return_dertail_disp(id)
 			$('#mo_link').attr('href', link);
 			if (!poster_path)
 			{
-				poster_path = 'assets/noimages.png';
+				poster_path = 'assets/no_images_po.jpg';
 			} else
 			{
 				var poster_id = movie.poster_id;

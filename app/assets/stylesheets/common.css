@@ -22,6 +22,12 @@ a:link, a:visited, a:hover {
 	font-weight: bold;
 }
 
+.f_feature {
+	font-feature-settings: "palt";
+	-webkit-font-feature-settings: "palt";
+}
+
+
 /* ここまで共通　*/
 
 body {
@@ -60,10 +66,18 @@ header {
 	margin-top: 28px;
 }
 
-h1 img {
+.logo {
 	width: calc(142/375*100%);
-	display: block;
 	margin: 0 auto;
+}
+
+.logo a {
+	display: block;
+}
+
+.logo img {
+    width: 100%;
+    display: block;
 }
 
 nav {
@@ -131,6 +145,11 @@ main {
 	box-shadow: 0 0 8px rgba(0,0,0,0.3);
 	position: relative;
 	margin-bottom: 20px;
+	transition: all  0.3s ease;
+}
+
+.card:hover {
+	opacity: 0.6;
 }
 
 .link {
@@ -143,6 +162,10 @@ main {
     z-index: 1
 }
 
+.link:hover {
+	opacity: 0.6;
+}
+
 .image_content {
 	position: relative;
 	
@@ -151,8 +174,7 @@ main {
 .image_content img {
 	border-radius: 10px 10px 0 0;
 	display: block;
-    max-width: 100%;
-    height: auto;
+    width: 100%;
 }
 
 .place {
@@ -261,12 +283,10 @@ main {
 .img_box::before {
 	content: '';
 	display: block;
-	background: linear-gradient(to bottom, rgba(255,255,255,0), #000 90%);
-	position: absolute;
-	background: url(gra.png) repeat-x 0 0;
+	background: url(gra.png) repeat-x left bottom;
 	position:absolute;
 	width: 100%;
-	height: 90%;
+	height: 100%;
 	left: 0;
 	bottom: 0;	
 }
@@ -301,10 +321,10 @@ main {
 
 .modal {
 	display: none;
-    height: 100vh;
+    height: 100%;
+    width: 100%;
     position: fixed;
     top: 0;
-    width: 100%;
     z-index: 100000;
 }
 
@@ -313,13 +333,14 @@ main {
     align-items: center;
     justify-content: center;
     height: 100%;
+    width: 100%;
 }
 
 .modal_bg {
 	background: rgba(0,0,0,0.8);
-    height: 100vh;
-    position: absolute;
+    height: 100%;
     width: 100%;
+    position: absolute;
 }
 
 .modal_cont {
@@ -332,12 +353,13 @@ main {
 
 .mo_upper {
 	display: flex;
-    justify-content: space-between;
     text-align: left;
+    margin-bottom: 6px;
 }
 
 .mo_img {
-	width: 60%;
+	width: calc(100/375*100%);
+	min-width: 100px;
 	margin-right: 4%;
 }
 
@@ -346,26 +368,29 @@ main {
 }
 
 .mo_ttl {
-	margin-bottom: 10px;
+	width: 100%;
+	min-width: 0;
 }
 
 .mo_ttl h2 {
 	font-size: 1.8rem;
 	line-height: 1.5;
 	margin-bottom: 14px;
+	letter-spacing: 0.06em;
 }
 
-.mo_date, .mo_place {
+.mo_date, .mo_place, .mo_time {
 	font-size: 1.4rem;
 	line-height: 1.4;
 	position:relative;
 	padding-left: 18px;
 	color: #555;
+	margin-bottom: 8px;
+	word-break: break-all;
 }
 
-.mo_date {
-	margin-bottom: 14px;
-	
+.mo_place {
+	letter-spacing: 0.06em;
 }
 
 .mo_date::before {
@@ -376,6 +401,7 @@ main {
 	left: 0;
 	font-family: "Font Awesome 5 Free";
 	font-weight: 900;
+	color: #FF4562;
 }
 
 .mo_place::before {
@@ -383,18 +409,31 @@ main {
 	position: absolute;
 	display: block;
 	top: 0;
+	left: 1px;
+	font-family: "Font Awesome 5 Free";
+	font-weight: 900;
+	color: #FF4562;
+}
+
+.mo_time::before {
+	content: '\f017';
+	position: absolute;
+	display: block;
+	top: 0;
 	left: 0;
 	font-family: "Font Awesome 5 Free";
 	font-weight: 900;
+	color: #FF4562;
 }
 
 .mo_txt {
 	text-align: left;
 	margin-bottom: 20px;
-	line-height: 1.3;
-	height: 160px;
+	line-height: 1.4;
+	height: 140px;
 	overflow: scroll;
 	padding-right: 10px;
+	letter-spacing: 0.06em;
 }
 
 .button_area {
@@ -403,9 +442,10 @@ main {
 .button_area a {
 	display: block;
 	width: 100%;
-	border: 1px solid #ccc;
-	border-radius: 10px;
-	padding: 20px;
+	border-radius: 5px;
+    padding: 16px;
+	color: #fff;
+	background-color: #FF4562;
 }
 
 
@@ -429,12 +469,24 @@ footer {
 
 @media screen and (min-width:960px){
 	/* PC */
+	a:link, a:visited, a:hover {
+		transition: all  0.3s ease;
+	}
+
+	a:hover {
+		opacity: 0.6;
+	}
+
 	body {
 		font-size:1.6rem;/* 16px*/
 	}
 	
-	h1 img {
+	.logo {
 		width: 200px;
+	}
+
+	h1 img:hover {
+		opacity: 0.6;
 	}
 
 	nav {
