@@ -141,7 +141,7 @@ task :update_all_movies => :environment do
         search_uri = base_url + "?" + URI.encode_www_form(params)
 
         search_charset = nil
-        json = open(search_uri, :allow_redirections => :all, "User-Agent" => @user_agent) do |f|
+        json = open(search_uri, :allow_redirections => :safe) do |f|
             search_charset = f.charset
             JSON.parse(f.read)
         end
