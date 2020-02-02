@@ -128,7 +128,17 @@ task :update_all_movies => :environment do
         p_path = ""
         review = 0.0
         release_date = ""
-        search_uri = MovieHelper.get_search_movie_uri(@title_nm)
+
+        api_key = ENV["TMDB_API_KEY"]
+        base_url = "https://api.themoviedb.org/3/search/movie"
+        params = {
+            "api_key" => api_key,
+            "language" => "ja-JP",
+            "query" => @title_nm,
+            "page" => "1",
+            "include_adult" => "false"
+        }
+        search_uri = base_url + "?" + URI.encode_www_form(params)
 
         search_charset = nil
         json = open(search_uri, :allow_redirections => :all, "User-Agent" => @user_agent) do |f|
