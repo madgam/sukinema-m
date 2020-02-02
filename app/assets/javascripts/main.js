@@ -118,7 +118,7 @@ function _return_dertail_disp(id)
 				release_date = '-';
 			} else
 			{
-				release_date += '公開'
+				release_date += ' 公開'
 			}
 			$('.mo_date').html(release_date);
 			$('.mo_place').html(theater);
@@ -137,9 +137,9 @@ function _return_dertail_disp(id)
 					return;
 				}
 				result_time_array += time;
-				result_time_array += ',';
+				result_time_array += ' / ';
 			});
-			$('.mo_time').html(result_time_array.slice(0,-1));
+			$('.mo_time').html(result_time_array.slice(0,-3));
 			if (!description)
 			{
 				description = '説明文なし';
