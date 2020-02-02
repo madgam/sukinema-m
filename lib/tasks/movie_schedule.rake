@@ -43,10 +43,6 @@ task :update_all_movies => :environment do
     # 作品名を取得
     node.css(".theaterlist01").children.each{ |mv|
 
-    if index > 5 then
-        break
-    end
-
     # DB登録用のモデルオブジェクトを初期化
     @movie_model = nil
 
