@@ -9,15 +9,12 @@ $('#current_longitude').ready(function()
 	var _r_list = [];
 	if (!sort_flg)
 	{
-		setTimeout(function ()
-		{
-			_r_list = sort('sort_1');
-		}, 200);
+		_r_list = sort('sort_1');
 	}
 	setTimeout(function ()
 	{
 		_make_list(_r_list);
-	}, 500);
+	}, 50);
 	$('.sort_link').on('click', function ()
 	{
 		var sort_id = $(this).attr('id');

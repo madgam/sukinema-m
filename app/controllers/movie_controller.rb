@@ -115,7 +115,7 @@ class MovieController < ApplicationController
             end
             
             childnode = Nokogiri::HTML.parse(childhtml, nil, charset)
-            description = childnode.css(".j2").inner_text.split("にて公開")[1].split("\n")[0]
+            description = childnode.css(".j2").inner_text.split("公開")[1].split("\n")[0]
             
             edit_title = mv.css("a").inner_text.gsub("(","（").gsub(")","）")
             @title_nm = edit_title
@@ -169,6 +169,7 @@ class MovieController < ApplicationController
     search_uri = MovieHelper.get_search_movie_uri(@title_nm)
 
     search_charset = nil
+    p search_uri
     json = open(search_uri, :allow_redirections => :all, "User-Agent" => @user_agent) do |f|
       search_charset = f.charset
       JSON.parse(f.read)
