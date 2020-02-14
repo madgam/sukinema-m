@@ -9,7 +9,7 @@ require 'geocoder'
 require 'resolv'
 require 'open_uri_redirections'
 
-desc "This task is called by the Heroku scheduler add-on"
+desc "movie load automation"
 task :update_all_movies => :environment do
     @user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.81 Safari/537.36"
     today_yyyymmdd = Time.now.strftime("%Y%m%d")
@@ -17,8 +17,6 @@ task :update_all_movies => :environment do
     page = 1
     index = 1
     movies = []
-
-    Movie.delete_all
 
     while true do
         eigakan_uri = "https://eigakan.org/theaters/pref/13/#{today_yyyymmdd}/#{page}"
@@ -43,10 +41,6 @@ task :update_all_movies => :environment do
 
         # 作品名を取得
         node.css(".theaterlist01").children.each{ |mv|
-
-            if index > 10 then
-                break
-            end
 
             # ブランクの場合はスキップ
             if mv.css("td").inner_text.blank? then
@@ -187,5 +181,6 @@ task :update_all_movies => :environment do
         page += 1
     end
 
+    Movie.delete_all
     Movie.import movies
 end
