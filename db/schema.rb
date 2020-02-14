@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_25_074800) do
+ActiveRecord::Schema.define(version: 2020_02_14_151619) do
 
   create_table "columns_priv", primary_key: ["Host", "Db", "User", "Table_name", "Column_name"], options: "/*!50100 TABLESPACE `mysql` */ ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin STATS_PERSISTENT=0 ROW_FORMAT=DYNAMIC", comment: "Column privileges", force: :cascade do |t|
     t.string "Host", default: "", null: false, collation: "ascii_general_ci"
@@ -150,7 +150,7 @@ ActiveRecord::Schema.define(version: 2020_01_25_074800) do
     t.string "theater"
     t.string "latitude"
     t.string "longitude"
-    t.string "description", limit: 500
+    t.text "description"
     t.string "link"
     t.string "time"
     t.string "all_time"

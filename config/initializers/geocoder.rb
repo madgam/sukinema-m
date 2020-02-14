@@ -26,8 +26,8 @@ Geocoder.configure(
   # IP address geocoding service (default :ipinfo_io)
   # ip_lookup: :maxmind,
 
-  # to use an API key:
-  api_key: "AIzaSyD4cb8oyPFBBCpl1GqBbMQi7XqeeF-eDzM",
+  # to use an API key:a
+  api_key: ENV["GOOGLE_API_KEY"],
 
   # geocoding service request timeout, in seconds (default 3):
   timeout: 5,

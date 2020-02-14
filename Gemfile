@@ -65,3 +65,4 @@ gem 'sidekiq'
 gem 'whenever', require: false
 gem 'open_uri_redirections'
 gem 'redis-rails'
+gem 'activerecord-import'

@@ -1,9 +1,17 @@
 
 class ShowController < ApplicationController
+
+    # Rails標準
     def index
         @google_api_key = ENV["GOOGLE_API_KEY"]
         # 映画リストを取得
         @movie_list = convert_movie_data
+    end
+
+    # JSON形式
+    def api
+        @movie_list = convert_movie_data
+        render json: @movie_list
     end
 
     def convert_movie_data

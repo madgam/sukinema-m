@@ -44,8 +44,9 @@ task :update_all_movies => :environment do
         # 作品名を取得
         node.css(".theaterlist01").children.each{ |mv|
 
-            # DB登録用のモデルオブジェクトを初期化
-            @movie_model = nil
+            if index > 10 then
+                break
+            end
 
             # ブランクの場合はスキップ
             if mv.css("td").inner_text.blank? then
@@ -69,9 +70,6 @@ task :update_all_movies => :environment do
             # 上映時間を取得
             ary.each{ |elm|
                 
-                # DB登録用のモデルオブジェクトを生成
-                @movie_model = Movie.new()
-
                 if elm.include?(":") then
                     edit_str = elm.split("～終")[0]
                     if edit_str.include?(mv.css("a").inner_text) then
@@ -116,21 +114,13 @@ task :update_all_movies => :environment do
                     # 映画館のリンク
                     link = theater_block.css("a")[0][:href]
 
-                    @movie_model.index = index
-                    @movie_model.title = @title_nm + title_option
-                    @movie_model.time = edit_str_strip[0].gsub(/[[:space:]]/, '')
-                    @movie_model.all_time = all_time
-                    @movie_model.theater = theater
-                    @movie_model.latitude = lat_long["latitude"]
-                    @movie_model.longitude = lat_long["longitude"]
-                    @movie_model.link = link
-                    @movie_model.description = description
-
                     search_id = ""
                     p_path = ""
+                    poster_id = ""
+                    drop_path = ""
                     review = 0.0
                     release_date = ""
-
+                    
                     api_key = ENV["TMDB_API_KEY"]
                     base_url = "https://api.themoviedb.org/3/search/movie"
                     params = {
@@ -141,7 +131,7 @@ task :update_all_movies => :environment do
                         "include_adult" => "false"
                     }
                     search_uri = base_url + "?" + URI.encode_www_form(params)
-
+                    
                     search_charset = nil
                     begin
                         json = open(search_uri, "User-Agent" => @user_agent) do |f|
@@ -153,9 +143,9 @@ task :update_all_movies => :environment do
                         puts e
                         nil
                     end
-
+                    
                     search_result = json['results']
-                        
+                    
                     if search_result != nil && search_result.length != 0 then
                         search_result = search_result.sort_by { |hash| -(hash['release_date'].to_i) }
                         result = search_result[0]
@@ -166,27 +156,36 @@ task :update_all_movies => :environment do
                             drop_path = result["poster_path"]
                         end
                         
-                        review = result["vote_average"]
-                        review = review / 2
-                        release_date = result["release_date"]
+                        review = (result["vote_average"] / 2).to_f.round(1)
+                        release_date = result["release_date"].gsub("-",".")
                         
-                        if p_path.blank? then
-                            drop_path = nil
-                        else
-                            @movie_model.poster_id = result["poster_path"]
-                            @movie_model.drop_path = "https://image.tmdb.org/t/p/w1000_and_h563_face#{drop_path}"
+                        if !p_path.blank? then
+                            poster_id = result["poster_path"]
+                            drop_path = "https://image.tmdb.org/t/p/w1000_and_h563_face#{drop_path}"
                         end
-            
-                        # レビュー
-                        @movie_model.review = review.to_f.round(1)
-                        # 公開日
-                        @movie_model.release_date = release_date.gsub("-",".")
                     end
-                    @movie_model.save
+
+                    movies << Movie.new(
+                        index: index,
+                        title: @title_nm + title_option,
+                        time: edit_str_strip[0].gsub(/[[:space:]]/, ''),
+                        all_time: all_time,
+                        theater: theater,
+                        latitude: lat_long["latitude"],
+                        longitude: lat_long["longitude"],
+                        link: link,
+                        description: description,
+                        poster_id: poster_id,
+                        drop_path: drop_path,
+                        review: review,
+                        release_date: release_date
+                    )
                 end
                 index += 1
             }
         }
         page += 1
     end
+
+    Movie.import movies
 end
