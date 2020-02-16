@@ -176,8 +176,9 @@ function _get_movie_list()
 		_list['all_time'] = $list[i].all_time;
 		_list['review'] = $list[i].review;
 		_list['release_date'] = $list[i].release_date;
-		_list['drop_path'] = $list[i].drop_path;
 		_list['poster_id'] = $list[i].poster_id;
+		var drop_path = $list[i].drop_path;
+		_list['drop_path'] = `https://image.tmdb.org/t/p/w1000_and_h563_face/${ drop_path }`;
 		var current_latitude = $('#current_latitude').html();
 		var current_longitude = $('#current_longitude').html();
 		var latitude = $list[i].latitude;
