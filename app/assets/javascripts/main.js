@@ -70,12 +70,7 @@ function _make_list(list)
 		html += '<div class="rating_num">' + ratingNum + _div_end;
 		html += '<div class="rating_star">' + _div_end + _div_end;
 		html += '<div class="img_box">';
-		var poster = list[i].drop_path;
-		if (!poster)
-		{
-			poster = 'assets/noimages.png';
-		}
-		html += '<img src="' + poster + '"/>' + _div_end + _div_end;
+		html += '<img src="' + list[i].drop_path + '"/>' + _div_end + _div_end;
 		html += '<div class="content">';
 		html += '<div class="left_text">';
 		html += '<span>上映まで</span>';
@@ -178,7 +173,14 @@ function _get_movie_list()
 		_list['release_date'] = $list[i].release_date;
 		_list['poster_id'] = $list[i].poster_id;
 		var drop_path = $list[i].drop_path;
-		_list['drop_path'] = `https://image.tmdb.org/t/p/w1000_and_h563_face/${ drop_path }`;
+		if (drop_path)
+		{
+			drop_path = `https://image.tmdb.org/t/p/w1000_and_h563_face/${ drop_path }`;
+		} else
+		{
+			drop_path = 'assets/noimages.png';
+		}
+		_list['drop_path'] = drop_path;
 		var current_latitude = $('#current_latitude').html();
 		var current_longitude = $('#current_longitude').html();
 		var latitude = $list[i].latitude;
