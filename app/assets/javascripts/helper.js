@@ -30,7 +30,7 @@ function sort(id)
  */
 function _time_sort(key)
 {
-    var _r_list = _get_movie_list();
+    var _r_list = get_movie_list();
     _r_list.sort(function (a, b)
     {
         var _a_time = '0000' + String(a.time);
@@ -44,7 +44,7 @@ function _time_sort(key)
 
 function _distance_sort(key)
 {
-    var _r_list = _get_movie_list();
+    var _r_list = get_movie_list();
     _r_list.sort(function (a, b)
     {
         var _a_distance = a[key] == 0.0 ? '9999' : '0000' + a.distance * 10;
@@ -65,7 +65,7 @@ function _distance_sort(key)
  */
 function _review_sort(key)
 {
-    var _r_list = _get_movie_list();
+    var _r_list = get_movie_list();
     _r_list.sort(function (a, b)
     {
         var _a_review = '000' + a.review * 10;

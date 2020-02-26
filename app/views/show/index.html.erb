@@ -11,14 +11,14 @@
 <script src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=<%= @google_api_key %>&callback=initMap" type="text/javascript"></script>
 </head>
-<body onload="init()">
+<body>
 	<div id="loader">
 		<p class="title"><%= image_tag 'ttl.svg', alt: 'スキネマ　スキマ時間で映画を観よう' %></p>	
 	</div>
 
 <header>
     <h1 class="logo">
-    	<a href="/">
+    	<a herf="" onclick="location.reload()">
 			<%= image_tag 'logo.svg', alt: 'スキネマ'%>
     	</a>
     </h1>

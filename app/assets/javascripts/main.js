@@ -3,8 +3,9 @@ var sort_flg = false;
 var $list = $('#data').data('list-id');
 var count = $list.length;
 
-// $(function ()
-$('#current_longitude').ready(function()
+init();
+
+window.onload = function()
 {
 	var _r_list = [];
 	if (!sort_flg)
@@ -14,7 +15,7 @@ $('#current_longitude').ready(function()
 	setTimeout(function ()
 	{
 		_make_list(_r_list);
-	}, 50);
+	}, 10);
 	$('.sort_link').on('click', function ()
 	{
 		var sort_id = $(this).attr('id');
@@ -24,7 +25,7 @@ $('#current_longitude').ready(function()
 		$('.sort_link').addClass('off');
 		$('#' + sort_id).removeClass('off');
 	});
-});
+}
 
 /**
  * 
@@ -154,7 +155,7 @@ function _return_dertail_disp(id)
 /**
  * 
  */
-function _get_movie_list()
+function get_movie_list()
 {
 	_movie_list = [];
 	for (var i = 0; i < count; i++)

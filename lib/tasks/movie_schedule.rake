@@ -54,7 +54,7 @@ task :update_all_movies => :environment do
             # 上映時間を配列化
             start_time = movie_data.css("td").inner_text.split(" / ")
             # 全上映時間を取得
-            all_time = movie_data.css("td").inner_text.split("～終")[0].gsub(movie_data.css("a").inner_text,"")
+            all_time = movie_data.css("td").inner_text.split("～終")[0].gsub(movie_data.css("a").inner_text,"").split("※")[0]
 
             # 上映時間が無い、純粋なタイトルのみの場合はスキップ
             if movie_data.css("a").inner_text.blank? then
