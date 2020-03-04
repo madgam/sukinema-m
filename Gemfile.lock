@@ -124,7 +124,11 @@ GEM
       ruby2_keywords (~> 0.0.1)
     mysql2 (0.5.3)
     nio4r (2.5.2)
+<<<<<<< HEAD
     nokogiri (1.10.9)
+=======
+    nokogiri (1.10.8)
+>>>>>>> 26323f40f092c2a0e42587a09fb79d125dc2cff6
       mini_portile2 (~> 2.4.0)
     open_uri_redirections (0.2.1)
     public_suffix (4.0.3)
@@ -281,7 +285,7 @@ DEPENDENCIES
   mysql2 (>= 0.4.4)
   nokogiri
   open_uri_redirections
-  puma (~> 4.1)
+  puma (~> 4.3)
   rails (~> 6.0.2, >= 6.0.2.1)
   redis-rails
   resque
