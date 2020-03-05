@@ -1,5 +1,5 @@
 current directory: /Users/yuji/sukinema_test/sukinema_m/vendor/bundle/ruby/2.6.0/gems/bootsnap-1.4.6/ext/bootsnap
-/Users/yuji/.rbenv/versions/2.6.5/bin/ruby -I /Users/yuji/.rbenv/versions/2.6.5/lib/ruby/site_ruby/2.6.0 -r ./siteconf20200304-1954-1n7tqge.rb extconf.rb
+/Users/yuji/.rbenv/versions/2.6.5/bin/ruby -I /Users/yuji/.rbenv/versions/2.6.5/lib/ruby/site_ruby/2.6.0 -r ./siteconf20200305-27340-yb85b5.rb extconf.rb
 creating Makefile
 
 current directory: /Users/yuji/sukinema_test/sukinema_m/vendor/bundle/ruby/2.6.0/gems/bootsnap-1.4.6/ext/bootsnap
@@ -12,4 +12,4 @@ linking shared-object bootsnap/bootsnap.bundle
 
 current directory: /Users/yuji/sukinema_test/sukinema_m/vendor/bundle/ruby/2.6.0/gems/bootsnap-1.4.6/ext/bootsnap
 make "DESTDIR=" install
-/usr/bin/install -c -m 0755 bootsnap.bundle ./.gem.20200304-1954-w1n9bm/bootsnap
+/usr/bin/install -c -m 0755 bootsnap.bundle ./.gem.20200305-27340-dmzpam/bootsnap
