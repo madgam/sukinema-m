@@ -27,9 +27,6 @@ gem 'jbuilder', '~> 2.7'
 gem 'chronic', '>= 0.10.2'
 gem 'jquery-rails'
 
-# Web Scraping
-gem 'nokogiri'
-
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
